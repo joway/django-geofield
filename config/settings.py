@@ -37,6 +37,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
+    'demo',
+    'django_geohash',
 ]
 
 MIDDLEWARE_CLASSES = [

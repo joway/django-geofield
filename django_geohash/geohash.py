@@ -8,7 +8,7 @@ except ImportError:
     _geohash = None
 
 __version__ = "0.8.5"
-__all__ = ['encode', 'decode', 'decode_exactly', 'bbox', 'neighbors', 'expand']
+__all__ = ['geo_encode', 'geo_decode', 'geo_decode_exactly', 'geo_bbox', 'geo_neighbors', 'geo_expand']
 
 _base32 = '0123456789bcdefghjkmnpqrstuvwxyz'
 _base32_map = {}
@@ -81,7 +81,7 @@ def _encode_i2c(lat, lon, lat_length, lon_length):
     return ret[::-1]
 
 
-def encode(latitude, longitude, precision=_precision):
+def geo_encode(latitude, longitude, precision=_precision):
     if latitude >= 90.0 or latitude < -90.0:
         raise Exception("invalid latitude.")
     while longitude < -180.0:
@@ -165,7 +165,7 @@ def _decode_c2i(hashcode):
     return (lat, lon, lat_length, lon_length)
 
 
-def decode(hashcode, delta=False):
+def geo_decode(hashcode, delta=False):
     '''
     decode a hashcode and get center coordinate, and distance between center and outer border
     '''
@@ -205,13 +205,13 @@ def decode(hashcode, delta=False):
     return latitude, longitude
 
 
-def decode_exactly(hashcode):
-    return decode(hashcode, True)
+def geo_decode_exactly(hashcode):
+    return geo_decode(hashcode, True)
 
 
 ## hashcode operations below
 
-def bbox(hashcode):
+def geo_bbox(hashcode):
     '''
     decode a hashcode and get north, south, east and west border.
     '''
@@ -247,7 +247,7 @@ def bbox(hashcode):
     return ret
 
 
-def neighbors(hashcode):
+def geo_neighbors(hashcode):
     if _geohash and len(hashcode) < 25:
         return _geohash.neighbors(hashcode)
 
@@ -272,8 +272,8 @@ def neighbors(hashcode):
     return ret
 
 
-def expand(hashcode):
-    ret = neighbors(hashcode)
+def geo_expand(hashcode):
+    ret = geo_neighbors(hashcode)
     ret.append(hashcode)
     return ret
 
@@ -299,7 +299,7 @@ def _uint64_deinterleave(ui64):
     return (lat, lon)
 
 
-def encode_uint64(latitude, longitude):
+def geo_encode_uint64(latitude, longitude):
     if latitude >= 90.0 or latitude < -90.0:
         raise ValueError("Latitude must be in the range of (-90.0, 90.0)")
     while longitude < -180.0:
@@ -321,7 +321,7 @@ def encode_uint64(latitude, longitude):
     return _uint64_interleave(lat, lon)
 
 
-def decode_uint64(ui64):
+def geo_decode_uint64(ui64):
     if _geohash:
         latlon = _geohash.decode_int(ui64 % 0xFFFFFFFFFFFFFFFF, LONG_ZERO)
         if latlon:
@@ -331,7 +331,7 @@ def decode_uint64(ui64):
     return (180.0 * lat / (1 << 32) - 90.0, 360.0 * lon / (1 << 32) - 180.0)
 
 
-def expand_uint64(ui64, precision=50):
+def geo_expand_uint64(ui64, precision=50):
     ui64 = ui64 & (0xFFFFFFFFFFFFFFFF << (64 - precision))
     lat, lon = _uint64_deinterleave(ui64)
     lat_grid = 1 << (32 - int(precision / 2))
