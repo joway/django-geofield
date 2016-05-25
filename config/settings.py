@@ -40,6 +40,8 @@ INSTALLED_APPS = [
 
     'demo',
     'django_geohash',
+
+    'rest_framework',
 ]
 
 MIDDLEWARE_CLASSES = [
@@ -71,7 +73,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'django_geohash.wsgi.application'
+WSGI_APPLICATION = 'config.wsgi.application'
 
 
 # Database
