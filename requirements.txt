@@ -1,0 +1,5 @@
+Django==1.9.6
+djangorestframework==3.3.3
+docutils==0.12
+haversine==0.4.5
+numpy==1.11.0
