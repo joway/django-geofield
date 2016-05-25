@@ -63,6 +63,12 @@ python:
   - "3.5-dev" # 3.5 development branch
   - "nightly" # currently points to 3.6-dev
 
+
+Thanks
+------
+
+[python-geohash](https://github.com/hkwi/python-geohash/blob/master/geohash.py)
+
 License
 ------
 
