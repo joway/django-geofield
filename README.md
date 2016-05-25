@@ -1,8 +1,6 @@
-![](https://api.travis-ci.org/joway/django-geofield.svg?branch=master)
-
-=====
 Django-GeoField
 =====
+![](https://api.travis-ci.org/joway/django-geofield.svg?branch=master)
 
 A lightweight Django Geo Field to save and handle Geo Points. It supports to search the nearby points by their geohash.
 
