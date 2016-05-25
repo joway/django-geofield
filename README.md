@@ -9,7 +9,7 @@ Quick start
 
 0. Install django-geofield
 
-pip install django-geofield
+    pip install django-geofield
 
 1. Add "django-geofield" to your INSTALLED_APPS setting like this::
 
@@ -40,7 +40,7 @@ pip install django-geofield
         points_matched = Point.objects.filter(position__geoprecise=pos.position.geohash)
 
 
-    The '__geoprecise' will find all points have the same geohash.
+    The '__geoprecise' lookup will find all points have the same geohash.
 
 6. If you want to query the points in expand area to eliminate the geohash's marginal error, you can :
 
@@ -52,5 +52,8 @@ pip install django-geofield
 
 
 
-### **License**: MIT
+License
+------
+
+MIT
 
