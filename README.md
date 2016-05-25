@@ -51,6 +51,17 @@ Quick start
     The '__geosearch' lookup will find all points have one of 9 ( 1 center point and 8 expand point) geohash .
 
 
+Support
+------
+
+python:
+  - "2.7"
+  - "3.2"
+  - "3.3"
+  - "3.4"
+  - "3.5"
+  - "3.5-dev" # 3.5 development branch
+  - "nightly" # currently points to 3.6-dev
 
 License
 ------
