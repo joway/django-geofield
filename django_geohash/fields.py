@@ -114,16 +114,13 @@ class GeoSearchMatchedLookup(Lookup):
 class GeoStartsWith(PatternLookup):
     lookup_name = 'geostarts'
 
-    def process_rhs(self, compiler, connection):
-        rhs, params = super(GeoStartsWith, self).process_rhs(compiler, connection)
+    def process_rhs(self, qn, connection):
+        rhs, params = super(GeoStartsWith, self).process_rhs(qn, connection)
         if params and not self.bilateral_transforms:
             params = geo_expand(params[0])
             for i in range(0, len(params)):
                 params[i] = "%s%%" % connection.ops.prep_for_like_query(params[i])
         return rhs, params
-
-    def get_rhs_op(self, connection, rhs):
-        return connection.operators['startswith'] % rhs
 
     def as_sql(self, compiler, connection):
         lhs_sql, params = self.process_lhs(compiler, connection)
