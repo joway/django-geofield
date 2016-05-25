@@ -1,3 +1,5 @@
+# coding: UTF-8
+
 import random
 from os import environ
 from unittest import TestCase
