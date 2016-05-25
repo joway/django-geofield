@@ -1,3 +1,5 @@
+![](https://api.travis-ci.org/joway/django-geofield.svg?branch=master)
+
 =====
 Django-GeoField
 =====
