@@ -9,31 +9,24 @@ Quick start
 
 0. Install django-geofield
 
-    pip install django-geofield
+        pip install django-geofield
 
-1. Add "django-geofield" to your INSTALLED_APPS setting like this::
-
-        INSTALLED_APPS = (
-            ...
-            'django-geofield',
-        )
-
-2. Define GeoPositionField in your Model like this::
+1. Define GeoPositionField in your Model like this::
 
         class Point(models.Model):
             ...
             position = GeoPositionField(db_index=True)
 
-3. Run `python manage.py makemigrations` and `python manage.py migrate` to make it effect
+2. Run `python manage.py makemigrations` and `python manage.py migrate` to make it effect
 
-4. The field will save a geo point with a string into database like this :
+3. The field will save a geo point with a string into database like this :
 
         Point.objects.create(
                         position=GeoPosition(lat, lon, precision=6))
 
         'wtmm7w,30.49145747305400533377905958332121372222900390625,120.042387425481223317547119222581386566162109375'
 
-5. If you want to query the points whose geohash is matched exactly with the given point , you can :
+4. If you want to query the points whose geohash is matched exactly with the given point , you can :
 
         pos = Point.objects.get(id=1)
 
@@ -42,7 +35,7 @@ Quick start
 
     The '__geoprecise' lookup will find all points have the same geohash.
 
-6. If you want to query the points in expand area to eliminate the geohash's marginal error, you can :
+5. If you want to query the points in expand area to eliminate the geohash's marginal error, you can :
 
         pos = Point.objects.get(id=1)
 
@@ -51,7 +44,7 @@ Quick start
     The '__geosearch' lookup will find all points have one of 9 ( 1 center point and 8 expand point) geohash .
 
 
-7. If you want to query the points within a specific range , you should lookup the geohash table to get the geohash length you want, then just search the cropped length.
+6. If you want to query the points within a specific range , you should lookup the geohash table to get the geohash length you want, then just search the cropped length.
 
         pos = Point.objects.get(id=1)
 

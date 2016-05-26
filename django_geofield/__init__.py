@@ -4,9 +4,9 @@ from __future__ import unicode_literals
 
 from decimal import Decimal
 
-from geofield.geohash import geo_encode
+from django_geofield.geohash import geo_encode
 
-VERSION = (0, 0, 1)
+VERSION = (0, 0, 2)
 __version__ = '.'.join(map(str, VERSION))
 
 

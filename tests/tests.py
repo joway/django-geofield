@@ -8,13 +8,13 @@ import numpy
 from haversine import haversine
 
 from example.app.models import Point
-from geofield import GeoPosition
-from geofield.geohash import geo_decode_exactly, geo_encode, geo_expand
+from django_geofield import GeoPosition
+from django_geofield.geohash import geo_decode_exactly, geo_encode, geo_expand
 
 
 class TestGeoHash(TestCase):
     def setUp(self):
-        environ.setdefault("DJANGO_SETTINGS_MODULE", "geofield.tests.settings")
+        environ.setdefault("DJANGO_SETTINGS_MODULE", "django_geofield.tests.settings")
         self.precision = 9
         for lat in numpy.arange(30.0, 30.01, 0.0001):
             for lon in numpy.arange(120, 120.01, 0.0001):

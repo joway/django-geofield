@@ -3,7 +3,7 @@
 from __future__ import unicode_literals
 
 from django.db import migrations, models
-import geofield.fields
+import django_geofield.fields
 
 
 class Migration(migrations.Migration):
@@ -18,7 +18,7 @@ class Migration(migrations.Migration):
             name='Point',
             fields=[
                 ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('position', geofield.fields.GeoPositionField(db_index=True, max_length=32)),
+                ('position', django_geofield.fields.GeoPositionField(db_index=True, max_length=32)),
             ],
         ),
     ]

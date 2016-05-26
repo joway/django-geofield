@@ -39,8 +39,6 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     'example.app',
-    'geofield',
-
     'rest_framework',
 ]
 
@@ -73,7 +71,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'geofield.test.wsgi.application'
+WSGI_APPLICATION = 'django_geofield.test.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/1.9/ref/settings/#databases

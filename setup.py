@@ -9,9 +9,9 @@ with open(os.path.join(os.path.dirname(__file__), 'README.md')) as readme:
 os.chdir(os.path.normpath(os.path.join(os.path.abspath(__file__), os.pardir)))
 
 setup(
-    name='django-geofield',
-    version=__import__('geofield').__version__,
-    packages=['geofield'],
+    name='django_geofield',
+    version=__import__('django_geofield').__version__,
+    packages=['django_geofield'],
     include_package_data=True,
     license='MIT License',
     description='A lightweight Django Geo Field to save and handle Geo Points. '

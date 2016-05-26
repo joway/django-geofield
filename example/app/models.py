@@ -2,7 +2,7 @@ from django.db import models
 
 # Create your models here.
 
-from geofield.fields import GeoPositionField
+from django_geofield.fields import GeoPositionField
 
 
 class Point(models.Model):
