@@ -11,7 +11,7 @@ __version__ = '.'.join(map(str, VERSION))
 
 
 class GeoPosition(object):
-    def __init__(self, latitude, longitude, geohash_code=None, precision=12):
+    def __init__(self, latitude, longitude, geohash_code=None, precision=9):
         if not geohash_code:
             geohash_code = geo_encode(latitude, longitude, precision)
 

@@ -15,9 +15,9 @@ from geofield.geohash import geo_decode_exactly, geo_encode, geo_expand
 class TestGeoHash(TestCase):
     def setUp(self):
         environ.setdefault("DJANGO_SETTINGS_MODULE", "geofield.tests.settings")
-        self.precision = 6
-        for lat in numpy.arange(30.0, 30.00001, 0.0000001):
-            for lon in numpy.arange(120, 120.00001, 0.0000001):
+        self.precision = 9
+        for lat in numpy.arange(30.0, 30.01, 0.0001):
+            for lon in numpy.arange(120, 120.01, 0.0001):
                 Point.objects.create(
                     position=GeoPosition(lat + random.random(), lon + random.random(), precision=self.precision))
 
@@ -34,8 +34,12 @@ class TestGeoHash(TestCase):
         pos = Point.objects.get(id=100)
 
         points_matched = Point.objects.filter(position__geosearch=pos.position.geohash)
-
         self.handler_data(pos, points_matched, 4)
+
+    def test_search_length(self):
+        pos = Point.objects.get(id=100)
+
+        points_matched = Point.objects.filter(position__geosearch=pos.position.geohash[0:6])
 
     def test_geoprecise(self):
         pos = Point.objects.get(id=100)

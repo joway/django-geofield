@@ -51,6 +51,26 @@ Quick start
     The '__geosearch' lookup will find all points have one of 9 ( 1 center point and 8 expand point) geohash .
 
 
+7. If you want to query the points within a specific range , you should lookup the geohash table to get the geohash length you want, then just search the cropped length.
+
+        pos = Point.objects.get(id=1)
+
+        points_matched = Point.objects.filter(position__geosearch=pos.position.geohash[0:4])
+
+    ![](http://images.cnitblog.com/blog/522490/201309/09185913-9f6f65fc3d3c40ecb3328970831c625c.png)
+
+#### PS: 
+
+If you want to limit the distance strictly, you should writer your own codes to filter the result .
+
+About GeoHash
+------
+
+[Wikipedia](http://en.wikipedia.org/wiki/Geohash)
+
+
+
+
 Support
 ------
 
