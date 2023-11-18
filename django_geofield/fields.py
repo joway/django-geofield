@@ -6,8 +6,9 @@ from django.core.exceptions import ValidationError
 from django.db import models
 from django.db.models import Lookup
 from django.db.models.lookups import PatternLookup
-from django.utils.encoding import smart_text
-from django.utils.translation import ugettext_lazy as _
+from django.utils.encoding import smart_str
+
+from django.utils.translation import gettext_lazy as _
 
 from . import GeoPosition
 from .geohash import geo_expand
@@ -42,9 +43,9 @@ class GeoPositionField(models.Field):
     # Converting values to Python objects,
     # 转化数据库中的字符到 Python的变量
     # from_db_value() is called when the data is loaded from the database
-    def from_db_value(self, value, expression, connection, context):
-        if value is None:
-            return value
+    def from_db_value(self, value, expression, connection):
+        if value is None or value == '':
+            return None
         return parse_geo_position(value)
 
     # to deserialization
@@ -71,7 +72,7 @@ class GeoPositionField(models.Field):
     # 序列化
     def value_to_string(self, obj):
         value = self._get_val_from_obj(obj)
-        return smart_text(value)
+        return smart_str(value)
 
 
 @GeoPositionField.register_lookup
