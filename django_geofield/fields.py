@@ -44,7 +44,7 @@ class GeoPositionField(models.Field):
     # 转化数据库中的字符到 Python的变量
     # from_db_value() is called when the data is loaded from the database
     def from_db_value(self, value, expression, connection):
-        if value is None or value == '':
+        if value is None or value == '' or value == "None":
             return None
         return parse_geo_position(value)
 
